@@ -13,7 +13,20 @@ MCP server for production scheduling in small and mid-size factories. It connect
 ## Install
 
 1. Install MRP-PMC from https://www.pmclite.com and open it once, so it creates its local database.
-2. Add the server to your MCP client configuration:
+
+### Claude Code: one command
+
+Replace `<your-user>` with your Windows user name, then run it in a terminal:
+
+```bash
+claude mcp add --env NO_PROXY=127.0.0.1,localhost pmclite -- "C:\Users\<your-user>\AppData\Local\MRP-PMC\MRP-PMC.exe" mcp-server
+```
+
+`claude mcp list` should now list `pmclite`. Every flag (`--env`, `--transport`, `--scope`) has to come **before** the server name; whatever follows `--` is the command the client launches.
+
+### Any other MCP client: JSON config
+
+2. Merge this entry into your existing `mcpServers` (do not replace the whole file):
 
 ```json
 {
@@ -86,4 +99,10 @@ The executable path depends on how the app was installed; the default per-user i
 - 数据不出本机：本地加密库，经程序自己的数据层访问。
 - 读操作在程序运行时可用；写操作（落库排程、报工、导入）建议先让程序空闲或关闭。
 
-安装：先到 https://www.pmclite.com 安装 MRP-PMC 并打开一次，再把上面 `mcpServers` 那段配置填进你的 MCP 客户端。
+安装：先到 https://www.pmclite.com 安装 MRP-PMC 并打开一次。Claude Code 用一行命令（注意选项写在服务器名之前，`--` 之后才是启动命令）：
+
+```bash
+claude mcp add --env NO_PROXY=127.0.0.1,localhost pmclite -- "C:\Users\<用户名>\AppData\Local\MRP-PMC\MRP-PMC.exe" mcp-server
+```
+
+装完 `claude mcp list` 里应出现 `pmclite`。其他客户端把上面 `mcpServers` 那段合并进已有配置即可。
