@@ -106,3 +106,9 @@ claude mcp add --env NO_PROXY=127.0.0.1,localhost pmclite -- "C:\Users\<用户�
 ```
 
 装完 `claude mcp list` 里应出现 `pmclite`。其他客户端把上面 `mcpServers` 那段合并进已有配置即可。
+
+## License
+
+This repository (documentation and MCP directory metadata) is released under the MIT License, see [LICENSE](LICENSE).
+
+The MRP-PMC desktop application that the server drives is commercial software, licensed separately — the MIT license here does not cover the application binary.
